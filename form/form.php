@@ -20,7 +20,7 @@
     </div>
     <div class="header-actions">
       <span class="sr-badge">S/R NO: <strong id="srDisplay">—</strong></span>
-      <a href="admin.html" class="btn-admin">Admin Panel</a>
+      <a href="admin/login.php" class="btn-admin">Admin Panel</a>
     </div>
   </div>
 </header>
@@ -109,7 +109,7 @@
 
     <div class="step-nav">
       <span></span>
-      <button class="btn-next" onclick="">Next: Pesticides →</button>
+      <button class="btn-next" onclick="goStep(2)">Next: Pesticides →</button>
     </div>
   </section>
 
@@ -166,8 +166,8 @@
     </div>
 
     <div class="step-nav">
-      <button class="btn-back" onclick="">← Back</button>
-      <button class="btn-next" onclick="">Next: Pest Status →</button>
+      <button class="btn-back" onclick="goStep(1)">← Back</button>
+      <button class="btn-next" onclick="goStep(3)">Next: Pest Status →</button>
     </div>
   </section>
 
@@ -192,8 +192,8 @@
     </div>
 
     <div class="step-nav">
-      <button class="btn-back" onclick="">← Back</button>
-      <button class="btn-next" onclick="">Next: Recommendations →</button>
+      <button class="btn-back" onclick="goStep(2)">← Back</button>
+      <button class="btn-next" onclick="goStep(4)">Next: Recommendations →</button>
     </div>
   </section>
 
@@ -266,8 +266,8 @@
     </div>
 
     <div class="step-nav">
-      <button class="btn-back" onclick="">← Back</button>
-      <button class="btn-next" onclick="">Next: Signatures →</button>
+      <button class="btn-back" onclick="goStep(3)">← Back</button>
+      <button class="btn-next" onclick="goStep(5)">Next: Signatures →</button>
     </div>
   </section>
 
@@ -307,7 +307,7 @@
     </div>
 
     <div class="step-nav">
-      <button class="btn-back" onclick="">← Back</button>
+      <button class="btn-back" onclick="goStep(4)">← Back</button>
       <span></span>
     </div>
   </section>
@@ -322,11 +322,11 @@
     <p>Service Report <strong id="modalSrNum"></strong> has been saved successfully.</p>
     <div class="modal-actions">
       <button onclick="" class="btn-modal-new">+ New Report</button>
-      <a href="admin.html" class="btn-modal-admin">View in Admin</a>
+      <a href="admin/dashboard.php" class="btn-modal-admin">View in Admin</a>
     </div>
   </div>
 </div>
 
-<script src="js/worker.js"></script>
+<script src="assets/form.js"></script>
 </body>
 </html>

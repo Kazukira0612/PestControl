@@ -10,27 +10,6 @@
 </head>
 <body>
 
-<!-- LOGIN SCREEN -->
-<div id="loginScreen" class="login-screen">
-  <div class="login-card">
-    <div class="login-logo">JC</div>
-    <h2>Admin Login</h2>
-    <p>JC Pest &amp; Hygiene Services</p>
-    <div class="login-form">
-      <div class="field-group">
-        <label>Username</label>
-        <input type="text" id="loginUser" placeholder="admin" autocomplete="username">
-      </div>
-      <div class="field-group">
-        <label>Password</label>
-        <input type="password" id="loginPass" placeholder="••••••••" autocomplete="current-password" onkeydown="if(event.key==='Enter') doLogin()">
-      </div>
-      <div id="loginError" class="login-error"></div>
-      <button class="btn-login" onclick="">Login →</button>
-    </div>
-  </div>
-</div>
-
 <!-- MAIN ADMIN -->
 <div id="adminMain" style="display:none">
   <aside class="sidebar">
@@ -86,7 +65,7 @@
       <div class="page-header">
         <h1>All Reports</h1>
         <div class="header-controls">
-          <input type="text" id="searchInput" placeholder="Search SR, address, customer..." class="search-input" oninput="searchReports()">
+          <input type="text" id="searchInput" placeholder="Search SR, address, customer..." class="search-input" oninput="">
           <select id="statusFilter" onchange="" class="filter-select">
             <option value="">All Status</option>
             <option value="draft">Draft</option>
@@ -112,6 +91,6 @@
   </main>
 </div>
 
-<script src="js/admin.js"></script>
+<script src="../assets/dahsboard.js"></script>
 </body>
 </html>
