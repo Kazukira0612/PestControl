@@ -3,9 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/form.css">
     <title>pest control</title>
 </head>
 <body>
-    
+    <?php
+    include "form/form.php";
+    ?>
 </body>
 </html>
