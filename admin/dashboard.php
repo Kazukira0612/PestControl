@@ -11,7 +11,7 @@
 <body>
 
 <!-- MAIN ADMIN -->
-<div id="adminMain" style="display:none">
+<div id="adminMain" >
   <aside class="sidebar">
     <div class="sidebar-brand">
       <div class="brand-logo">JC</div>

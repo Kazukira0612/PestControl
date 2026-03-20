@@ -8,7 +8,7 @@
 </head>
 <body>
         <!-- LOGIN SCREEN -->
-        <div id="loginScreen" class="login-screen">
+        <form id="loginScreen" class="login-screen" action ="<?php echo htmlspecialchars($_SERVER['PHP_SELF'])?>" method="POST">
         <div class="login-card">
             <div class="login-logo">JC</div>
             <h2>Admin Login</h2>
@@ -20,12 +20,19 @@
             </div>
             <div class="field-group">
                 <label>Password</label>
-                <input type="password" id="loginPass" placeholder="••••••••" autocomplete="current-password" onkeydown="if(event.key==='Enter') doLogin()">
+                <input type="password" id="loginPass" placeholder="••••••••" autocomplete="current-password" >
             </div>
             <div id="loginError" class="login-error"></div>
-            <button class="btn-login" onclick="">Login →</button>
+            <button type="submit" name="btn-login" class="btn-login" >Login →</button>
             </div>
         </div>
-        </div>
+        </form>
 </body>
 </html>
+
+<?php 
+    if(isset($_POST['btn-login']))
+    {
+        header("location: dashboard.php");
+    }
+?>
