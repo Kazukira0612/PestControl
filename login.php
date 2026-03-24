@@ -33,6 +33,6 @@
 <?php 
     if(isset($_POST['btn-login']))
     {
-        header("location: dashboard.php");
+        header("location: admin/dashboard.php");
     }
 ?>

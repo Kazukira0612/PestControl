@@ -6,3 +6,12 @@ function goStep(n) {
   document.querySelector('.step[data-step="' + n + '"]').classList.add('active');
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
+
+// ─── CANVAS ─────────────────────────────────────
+const canvas = document.getElementById('sigApplicator');
+const clearBtn = document.querySelector('.btn-clear-sig');
+const saveBtn = document.querySelector('.btn-save');
+
+const context = canvas.getContext('2d');
+let display = document.getElementById('sigApplicator');
+let painting = false;

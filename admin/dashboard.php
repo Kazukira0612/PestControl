@@ -5,8 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Admin Panel — JC Pest & Hygiene</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../assets/dashboard.css">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
 </head>
 <body>
 
@@ -21,9 +22,11 @@
       </div>
     </div>
     <nav class="sidebar-nav">
-      <a class="nav-item active" onclick="">📊 Dashboard</a>
-      <a class="nav-item" onclick="">📋 All Reports</a>
-      <a class="nav-item" href="index.html" target="_blank">➕ New Report</a>
+      <a class="nav-item active" onclick="showView('dashboard')">📊 Dashboard</a>
+      <a class="nav-item" onclick="showView('reports')">📋 All Reports</a>
+      <a class="nav-item" onclick="showView('applicators')">👤 Applicator Register</a>
+      <a class="nav-item" onclick="showView('customers')">🏢 Customer Register</a>
+      <a class="nav-item" href="../index.php" target="_blank">➕ New Report</a>
     </nav>
     <div class="sidebar-footer">
       <span id="adminName"></span>
@@ -65,7 +68,7 @@
       <div class="page-header">
         <h1>All Reports</h1>
         <div class="header-controls">
-          <input type="text" id="searchInput" placeholder="Search SR, address, customer..." class="search-input" oninput="">
+          <input type="text" id="searchInput" placeholder="Search SR, address, customer..." class="search-input" >
           <select id="statusFilter" onchange="" class="filter-select">
             <option value="">All Status</option>
             <option value="draft">Draft</option>
@@ -88,8 +91,161 @@
       </div>
       <div id="reportDetail"></div>
     </div>
+
+    <!-- ── APPLICATORS VIEW ── -->
+    <div id="viewApplicators" class="view">
+      <div class="page-header">
+        <h1>Applicators</h1>
+        <div class="header-controls">
+          <input type="text" id="searchApplicator" placeholder="Search ID or name…" class="search-input" >
+          <button class="btn btn-success" >+ Add Applicator</button>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="panel-header">
+          <span class="panel-title">Registered Applicators</span>
+          <span id="applicatorCount" style="font-size:12px;color:var(--text3)"></span>
+        </div>
+        <div id="applicatorsTable"></div>
+      </div>
+    </div>
+
+<!-- ── CUSTOMERS VIEW ── -->
+    <div id="viewCustomers" class="view">
+      <div class="page-header">
+        <h1>Customers</h1>
+        <div class="header-controls">
+          <input type="text" id="searchCustomer" placeholder="Search company, lot…" class="search-input" >
+          <button class="btn btn-success" >+ Add Customer</button>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="panel-header">
+          <span class="panel-title">Customer Companies</span>
+          <span id="customerCount" style="font-size:12px;color:var(--text3)"></span>
+        </div>
+        <div id="customersTable"></div>
+      </div>
+    </div>
+ 
   </main>
 </div>
+
+<!-- ═══════════════════════════════════════════════
+     MODAL — ADD / EDIT APPLICATOR
+════════════════════════════════════════════════ -->
+<div class="modal-overlay" id="applicatorModal">
+  <div class="modal">
+    <div class="modal-header">
+      <h3 id="applicatorModalTitle">Add Applicator</h3>
+      <button class="modal-close" >×</button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-error" id="applicatorError"></div>
+      <input type="hidden" id="applicatorEditId">
+      <div class="form-group">
+        <label>Full Name</label>
+        <input type="text" id="appName" placeholder="e.g. Ahmad bin Razak">
+      </div>
+      <div class="form-group">
+        <label>Applicator ID</label>
+        <input type="text" id="appId" placeholder="e.g. APP-001">
+      </div>
+      <div class="form-group">
+        <label>Role</label>
+        <select id="appRole">
+          <option value="applicator">Applicator</option>
+          <option value="supervisor">Supervisor</option>
+          <option value="admin">Admin</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label id="appPassLabel">Password</label>
+        <input type="password" id="appPass" placeholder="Min 6 characters" >
+        <div class="pw-strength"><div class="pw-strength-bar" id="pwBar"></div></div>
+      </div>
+      <div class="form-group">
+        <label>Confirm Password</label>
+        <input type="password" id="appPassConfirm" placeholder="Re-enter password">
+      </div>
+      <div class="form-group">
+        <label>Status</label>
+        <select id="appStatus">
+          <option value="active">Active</option>
+          <option value="inactive">Inactive</option>
+        </select>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" >Cancel</button>
+      <button class="btn btn-success" >Save Applicator</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     MODAL — ADD / EDIT CUSTOMER
+════════════════════════════════════════════════ -->
+<div class="modal-overlay" id="customerModal">
+  <div class="modal">
+    <div class="modal-header">
+      <h3 id="customerModalTitle">Add Customer</h3>
+      <button class="modal-close" >×</button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-error" id="customerError"></div>
+      <input type="hidden" id="customerEditId">
+      <div class="form-group">
+        <label>Company Name</label>
+        <input type="text" id="custName" placeholder="e.g. Kilang Biscuit Sdn Bhd">
+      </div>
+      <div class="form-group">
+        <label>Contact Person</label>
+        <input type="text" id="custContact" placeholder="e.g. Lim Wei Ming">
+      </div>
+      <div class="form-group">
+        <label>Email Address</label>
+        <input type="email" id="custEmail" placeholder="e.g. manager@company.com">
+      </div>
+      <div class="form-group">
+        <label>Phone Number</label>
+        <input type="tel" id="custPhone" placeholder="e.g. 03-1234 5678">
+      </div>
+      <div class="form-group">
+        <label>Factory / Lot Number</label>
+        <input type="text" id="custLot" placeholder="e.g. Lot 12, Jalan Perusahaan 3">
+      </div>
+      <div class="form-group">
+        <label>Address</label>
+        <textarea id="custAddress" placeholder="Full factory address…"></textarea>
+      </div>
+      <div class="form-group">
+        <label>Industry / Type</label>
+        <select id="custIndustry">
+          <option value="">— Select —</option>
+          <option value="food">Food & Beverage</option>
+          <option value="pharma">Pharmaceutical</option>
+          <option value="manufacturing">Manufacturing</option>
+          <option value="warehouse">Warehouse / Logistics</option>
+          <option value="hospitality">Hospitality</option>
+          <option value="office">Office / Commercial</option>
+          <option value="other">Other</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Notes</label>
+        <textarea id="custNotes" placeholder="Any special requirements or remarks…"></textarea>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" >Cancel</button>
+      <button class="btn btn-success" >Save Customer</button>
+    </div>
+  </div>
+</div>
+ 
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
 
 <script src="../assets/dahsboard.js"></script>
 </body>

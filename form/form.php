@@ -20,7 +20,7 @@
     </div>
     <div class="header-actions">
       <span class="sr-badge">S/R NO: <strong id="srDisplay">—</strong></span>
-      <a href="admin/login.php" class="btn-admin">Admin Panel</a>
+      <a href="login.php" class="btn-admin">Admin Panel</a>
     </div>
   </div>
 </header>
@@ -46,13 +46,28 @@
 <main class="form-container">
 <form action="form-process.php" method="POST" onsubmit="return false;">
   <div class="form-header-bar">
-    <h2>PEST CONTROL SERVICE REPORT</h2>
+    <h2>FORM H</h2>
     <p class="form-sub">Office Copy / Account Dept Copy / Customer Copy &nbsp;|&nbsp; Record Of Pesticide Usage</p>
   </div>
 
   <!-- STEP 1: Customer Info -->
   <section class="form-step active" id="step1">
     <div class="section-label">A — CUSTOMER INFORMATION</div>
+
+    <div class="field-row">
+      <div class="field-group">
+        <label>Company Name</label>
+        <select type="select" id="companyName" placeholder="Company name">
+          <option value="company1">Select Company Name</option>
+        </select>
+      </div>
+      <div class="field-group">
+        <label>factory/lot</label>
+        <select type="select" id="factoryLot" placeholder="Factory/Lot">
+          <option value="company1">Select Factory/Lot</option>
+        </select>
+      </div>
+    </div>
     
     <div class="field-row">
       <div class="field-group full">
@@ -287,14 +302,9 @@
       </div>
 
       <div class="sig-block">
-        <div class="sig-title">Customer's Signature / Chop</div>
+        <div class="sig-title">Customer's Signature</div>
         <p class="sig-desc">I acknowledge receipt of the above report</p>
         <canvas id="sigCustomer" class="sig-canvas"></canvas>
-        <div class="sig-actions">
-          <button class="btn-clear-sig" onclick="">Clear</button>
-        </div>
-        <div class="sig-title" style="margin-top:16px">Customer Chop (Stamp)</div>
-        <canvas id="sigChop" class="sig-canvas"></canvas>
         <div class="sig-actions">
           <button class="btn-clear-sig" onclick="">Clear</button>
         </div>
