@@ -9,7 +9,7 @@ function goStep(n) {
 
 // ─── CANVAS ─────────────────────────────────────
 const canvas = document.getElementById("sigApplicator");
-const clearBtn = document.getElementById("clear-btn");
+const clearBtn = document.getElementById("btn-clear-sig");
 const saveBtn = document.getElementById("save-btn");
 const context = canvas.getContext("2d");
 let display = document.getElementById("show");
