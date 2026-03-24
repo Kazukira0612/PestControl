@@ -27,7 +27,7 @@
     </nav>
     <div class="sidebar-footer">
       <span id="adminName"></span>
-      <button onclick="" class="btn-logout">Logout</button>
+      <button type="submit" name="btn-logout" class="btn-logout">Logout</button>
     </div>
   </aside>
 
