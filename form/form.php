@@ -9,6 +9,44 @@
 </head>
 <body>
 
+<?php
+session_start();
+include '../includes/db_conn.php';
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+    $fullName    = mysqli_real_escape_string($conn, $_POST['ownerName'] ?? '');
+    $phone       = mysqli_real_escape_string($conn, $_POST['ownerPhone'] ?? '');
+    $shopAddress = mysqli_real_escape_string($conn, $_POST['shopAddress'] ?? '');
+    $category    = mysqli_real_escape_string($conn, $_POST['catId'] ?? '');
+    $shopName    = mysqli_real_escape_string($conn, $_POST['shopName'] ?? '');
+    $shopDesc    = mysqli_real_escape_string($conn, $_POST['shopDesc'] ?? '');
+
+    $treatmentPurpose =  mysqli_real_escape_string($conn, $_POST['treatmentPurpose'] ?? '');
+    $plannedDate =  mysqli_real_escape_string($conn, $_POST['plannedDate'] ?? '');
+    $typeOfPremise =  mysqli_real_escape_string($conn, $_POST['typeOfPremise'] ?? '');
+    $treatmentTime =  mysqli_real_escape_string($conn, $_POST['treatmentTime'] ?? '');
+    $serviceAddress =  mysqli_real_escape_string($conn, $_POST['serviceAddress'] ?? '');
+    $specialinstruction =  mysqli_real_escape_string($conn, $_POST['specialinstruction'] ?? '');
+    $remarks = mysqli_real_escape_string($conn, $_POST['remarks'] ?? '');
+    $pestType = mysqli_real_escape_string($conn, $_POST['pestType'] ?? '');
+
+    // 1. Insert shop (no photo columns)
+    $sql = "INSERT INTO shop (userId, ownerName, ownerPhone, shopAddress, catId, shopName, shopDesc, ssmFile)
+        VALUES ('$userId','$fullName','$phone','$shopAddress','$category','$shopName','$shopDesc','$ssmFile')";
+
+    $success = mysqli_query($conn, $sql);
+
+    if ($success) {
+        header("Location: " . $_SERVER['PHP_SELF'] . "?success=1");
+        exit();
+
+    } else {
+        $errorMsg = "Error saving shop. Please try again.";
+    }
+}
+?>
+
 <header class="site-header">
   <div class="header-inner">
     <div class="brand">
