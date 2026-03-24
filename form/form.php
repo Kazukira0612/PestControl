@@ -295,18 +295,18 @@
       <div class="sig-block">
         <div class="sig-title">Applicator's Signature</div>
         <p class="sig-desc">I declare the information above is true and correct</p>
-        <canvas id="sigApplicator" class="sig-canvas"></canvas>
+        <canvas id="sigApplicator" class="sig-canvas" width="400" height="200"></canvas>
         <div class="sig-actions">
-          <button class="btn-clear-sig" onclick="">Clear</button>
+          <button class="btn-clear-sig" onclick="sig1.clear()">Clear</button>
         </div>
       </div>
 
       <div class="sig-block">
         <div class="sig-title">Customer's Signature</div>
         <p class="sig-desc">I acknowledge receipt of the above report</p>
-        <canvas id="sigCustomer" class="sig-canvas"></canvas>
+        <canvas id="sigCustomer" class="sig-canvas" width="400" height="200"></canvas>
         <div class="sig-actions">
-          <button class="btn-clear-sig" onclick="">Clear</button>
+          <button class="btn-clear-sig" onclick="sig2.clear()">Clear</button>
         </div>
       </div>
     </div>
