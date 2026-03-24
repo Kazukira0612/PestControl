@@ -15,13 +15,6 @@ include '../includes/db_conn.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-    $fullName    = mysqli_real_escape_string($conn, $_POST['ownerName'] ?? '');
-    $phone       = mysqli_real_escape_string($conn, $_POST['ownerPhone'] ?? '');
-    $shopAddress = mysqli_real_escape_string($conn, $_POST['shopAddress'] ?? '');
-    $category    = mysqli_real_escape_string($conn, $_POST['catId'] ?? '');
-    $shopName    = mysqli_real_escape_string($conn, $_POST['shopName'] ?? '');
-    $shopDesc    = mysqli_real_escape_string($conn, $_POST['shopDesc'] ?? '');
-
     $treatmentPurpose =  mysqli_real_escape_string($conn, $_POST['treatmentPurpose'] ?? '');
     $plannedDate =  mysqli_real_escape_string($conn, $_POST['plannedDate'] ?? '');
     $typeOfPremise =  mysqli_real_escape_string($conn, $_POST['typeOfPremise'] ?? '');
