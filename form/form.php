@@ -256,7 +256,12 @@
     <div class="field-row">
       <div class="field-group">
         <label>Name Of Other Applicator</label>
-        <input type="text" id="otherApplicator" placeholder="If any">
+        <div id="otherApplicatorsContainer">
+        <div class="applicator-row">
+          <input type="text" placeholder="Other Applicator Name">
+        </div>
+    </div>
+    <button type="button" class="btn-add-row" onclick="addApplicator()">+ Add Applicator</button>
       </div>
       <div class="field-group">
         <label>Vehicle No</label>

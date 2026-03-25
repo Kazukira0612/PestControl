@@ -128,8 +128,30 @@ function addRecommendationRow(body) {
   body.appendChild(tr);
 }
 
+function addApplicator() {
+  const container = document.getElementById('otherApplicatorsContainer');
+
+  const div = document.createElement('div');
+  div.classList.add('applicator-row');
+
+  div.innerHTML = `
+    <input type="text" placeholder="Other Applicator Name">
+    <button type="button" onclick="this.parentElement.remove()">❌</button>
+  `;
+
+  container.appendChild(div);
+}
+
 // ─── DATA COLLECTION ─────────────────────────────────────
 function collectFormData(status = 'draft') {
+
+  const otherApplicators = [];
+document.querySelectorAll('#otherApplicatorsContainer input').forEach(input => {
+  if (input.value.trim()) {
+    otherApplicators.push(input.value.trim());
+  }
+});
+
   // Pesticides
   const pesticides = [];
   for (let i = 1; i <= 6; i++) {
