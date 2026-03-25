@@ -125,7 +125,7 @@
 
     <div class="step-nav">
       <span></span>
-      <button class="btn-next" onclick="goStep(2)">Next: Pesticides →</button>
+      <button type="button" class="btn-next" onclick="goStep(2)">Next: Pesticides →</button>
     </div>
   </section>
 
@@ -152,6 +152,7 @@
         </tbody>
       </table>
     </div>
+   <button type="button" class="btn-add-row" onclick="addRecommendationRowPest()">+ Add Row</button>
 
     <div class="label-precaution">
       <div class="label-row">
@@ -206,10 +207,11 @@
         </tbody>
       </table>
     </div>
+    <button type="button" class="btn-add-row" onclick="addPestStatusRow()">+ Add Row</button>
 
     <div class="step-nav">
-      <button class="btn-back" onclick="goStep(2)">← Back</button>
-      <button class="btn-next" onclick="goStep(4)">Next: Recommendations →</button>
+      <button type="button" class="btn-back" onclick="goStep(2)">← Back</button>
+      <button type="button" class="btn-next" onclick="goStep(4)">Next: Recommendations →</button>
     </div>
   </section>
 
@@ -229,7 +231,7 @@
         </tbody>
       </table>
     </div>
-    <button class="btn-add-row" onclick="">+ Add Row</button>
+    <button class="btn-add-row" onclick="addRecommendationRow()">+ Add Row</button>
 
     <div class="section-label" style="margin-top:28px">F — CUSTOMER FEEDBACK</div>
     <div class="field-group full">
@@ -282,8 +284,8 @@
     </div>
 
     <div class="step-nav">
-      <button class="btn-back" onclick="goStep(3)">← Back</button>
-      <button class="btn-next" onclick="goStep(5)">Next: Signatures →</button>
+      <button type="button" class="btn-back" onclick="goStep(3)">← Back</button>
+      <button type="button" class="btn-next" onclick="goStep(5)">Next: Signatures →</button>
     </div>
   </section>
 
@@ -297,7 +299,7 @@
         <p class="sig-desc">I declare the information above is true and correct</p>
         <canvas id="sigApplicator" class="sig-canvas" width="400" height="200"></canvas>
         <div class="sig-actions">
-          <button class="btn-clear-sig" id="btn-clear-sig" onclick="sig1.clear()">Clear</button>
+         <button type="button" class="btn-clear-sig" onclick="sig1.clear()">Clear</button>
         </div>
       </div>
 
@@ -306,19 +308,19 @@
         <p class="sig-desc">I acknowledge receipt of the above report</p>
         <canvas id="sigCustomer" class="sig-canvas" width="400" height="200"></canvas>
         <div class="sig-actions">
-          <button class="btn-clear-sig" id="btn-clear-sig" onclick="sig2.clear()">Clear</button>
+          <button type="button" class="btn-clear-sig" onclick="sig2.clear()">Clear</button>
         </div>
       </div>
     </div>
 
     <div class="submit-area">
       <div id="saveStatus" class="save-status"></div>
-      <button class="btn-save" onclick="">💾 Save Draft</button>
-      <button class="btn-submit" onclick="">✅ Submit & Complete</button>
+      <button type="button" class="btn-save" onclick="">💾 Save Draft</button>
+      <button type="button" class="btn-submit" onclick="">✅ Submit & Complete</button>
     </div>
 
     <div class="step-nav">
-      <button class="btn-back" onclick="goStep(4)">← Back</button>
+      <button type="button" class="btn-back" onclick="goStep(4)">← Back</button>
       <span></span>
     </div>
   </section>
