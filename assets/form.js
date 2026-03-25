@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   buildPesticidesTable();
   buildPestStatusTable();
   buildRecommendationsTable();
-  initSignaturePads();
+  initSignature();
 
   if (editId) {
     await loadForm(null, editId);

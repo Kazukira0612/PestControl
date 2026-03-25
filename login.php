@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../assets/dashboard.css">
+    <link rel="stylesheet" href="assets/dashboard.css">
     <title>Document</title>
 </head>
 <body>
@@ -11,12 +11,12 @@
         <form id="loginScreen" class="login-screen" action ="<?php echo htmlspecialchars($_SERVER['PHP_SELF'])?>" method="POST">
         <div class="login-card">
             <div class="login-logo">JC</div>
-            <h2>Admin Login</h2>
+            <h2>Login</h2>
             <p>JC Pest &amp; Hygiene Services</p>
             <div class="login-form">
             <div class="field-group">
                 <label>Username</label>
-                <input type="text" id="loginUser" placeholder="admin" autocomplete="username">
+                <input type="text" id="loginUser" placeholder="username" autocomplete="username">
             </div>
             <div class="field-group">
                 <label>Password</label>
