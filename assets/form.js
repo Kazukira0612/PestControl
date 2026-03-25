@@ -136,7 +136,7 @@ function addApplicator() {
 
   div.innerHTML = `
     <input type="text" placeholder="Other Applicator Name">
-    <button type="button" onclick="this.parentElement.remove()">❌</button>
+    <button type="button" class="btn-add-row" onclick="this.parentElement.remove()">❌</button>
   `;
 
   container.appendChild(div);
