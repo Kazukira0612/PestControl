@@ -18,7 +18,9 @@ if (isset($_POST['btn-login'])) {
             header("location: admin/dashboard.php");
         }
         else {
-            echo "<script>alert('Invalid username or password');</script>";
+            echo "<script>alert('Invalid username or password');
+            window.location.href = 'login.php';
+            </script>";
         }
     }
     else if ($category == "employee") {
@@ -32,8 +34,11 @@ if (isset($_POST['btn-login'])) {
             header("location: employee/dashboard.php");
         }
         else {
-            echo "<script>alert('Invalid username or password');</script>";
+            echo "<script>alert('Invalid username or password');
+            window.location.href = 'login.php';
+            </script>";
         }
     }
 }
+mysqli_close($conn);
 ?>
