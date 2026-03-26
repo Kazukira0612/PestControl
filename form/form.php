@@ -5,8 +5,8 @@ $classTypes = [];
 $sql = mysqli_query($conn, "SELECT * FROM class_type");
 while ($row = mysqli_fetch_array($sql)) {
     $classTypes[] = [
-        'id' => $row['class'], // adjust column name as needed
-        'name' => $row['className'] // adjust column name as needed
+        'id' => $row['class'], 
+        'name' => $row['className']
     ];
 }
 ?>
@@ -212,7 +212,7 @@ while ($row = mysqli_fetch_array($sql)) {
               classTypes.forEach(function(classType) {
                   const option = document.createElement('option');
                   option.value = classType.id;
-                  option.textContent = classType.name;
+                  option.textContent = classType.id;
                   selectElement.appendChild(option);
               });
           }
@@ -394,14 +394,16 @@ while ($row = mysqli_fetch_array($sql)) {
       </div>
     </div>
 
-    <div class="field-row">
-      <div class="field-group">
-        <label>Name Of Customer</label>
-        <input type="text" id="customerName" placeholder="Customer full name">
-      </div>
-      <div class="field-group">
-        <label>Date</label>
-        <input type="date" id="customerDate">
+    <div class="customer-info">
+      <div class="field-row">
+        <div class="field-group">
+          <label>Name Of Customer</label>
+          <input type="text" id="customerName" placeholder="Customer full name">
+        </div>
+        <div class="field-group">
+          <label>Date</label>
+          <input type="date" id="customerDate">
+        </div>
       </div>
     </div>
 
@@ -437,7 +439,6 @@ while ($row = mysqli_fetch_array($sql)) {
 
     <div class="submit-area">
       <div id="saveStatus" class="save-status"></div>
-      <button type="button" class="btn-save"   onclick="saveForm('draft')">💾 Save Draft</button>
       <button type="button" class="btn-submit" onclick="saveForm('complete')">✅ Submit & Complete</button>
     </div>
 
