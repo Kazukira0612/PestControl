@@ -394,6 +394,7 @@ while ($row = mysqli_fetch_array($sql)) {
       </div>
     </div>
 
+  <div class="customer-info">
     <div class="field-row">
       <div class="field-group">
         <label>Name Of Customer</label>
@@ -404,6 +405,7 @@ while ($row = mysqli_fetch_array($sql)) {
         <input type="date" id="customerDate">
       </div>
     </div>
+  </div>
 
     <div class="step-nav">
       <button type="button" class="btn-back" onclick="goStep(3)">← Back</button>
@@ -437,7 +439,6 @@ while ($row = mysqli_fetch_array($sql)) {
 
     <div class="submit-area">
       <div id="saveStatus" class="save-status"></div>
-      <button type="button" class="btn-save"   onclick="saveForm('draft')">💾 Save Draft</button>
       <button type="button" class="btn-submit" onclick="saveForm('complete')">✅ Submit & Complete</button>
     </div>
 
