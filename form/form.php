@@ -66,7 +66,7 @@ include ('db_conn/db_conn.php');
             $sql = mysqli_query($conn, "SELECT * FROM company" );
             while ($row = mysqli_fetch_array($sql)) {
           ?>
-          <option value="<?php echo $row['comName']; ?>"><?php echo $row['comName']; ?></option>
+          <option value="<?php echo $row['comId']; ?>"><?php echo $row['comName']; ?></option>
           <?php } ?>
         </select>
       </div>
@@ -78,7 +78,7 @@ include ('db_conn/db_conn.php');
             $sql = mysqli_query($conn, "SELECT * FROM factory_lot " );
             while ($row = mysqli_fetch_array($sql)) {
           ?>
-          <option value="<?php echo $row['factorName']; ?>"><?php echo $row['factorName']; ?></option>
+          <option value="<?php echo $row['factorNo']; ?>"><?php echo $row['factorName']; ?></option>
           <?php } ?>
         </select>
       </div>
@@ -335,8 +335,8 @@ include ('db_conn/db_conn.php');
 
     <div class="submit-area">
       <div id="saveStatus" class="save-status"></div>
-      <button type="button" class="btn-save" onclick="">💾 Save Draft</button>
-      <button type="button" class="btn-submit" onclick="">✅ Submit & Complete</button>
+      <button type="button" class="btn-save"   onclick="saveForm('draft')">💾 Save Draft</button>
+      <button type="button" class="btn-submit" onclick="saveForm('complete')">✅ Submit & Complete</button>
     </div>
 
     <div class="step-nav">

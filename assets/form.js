@@ -249,7 +249,31 @@ document.querySelectorAll('#otherApplicatorsContainer input').forEach(input => {
     applicator_signature:   applicatorSig,
     customer_signature:     customerSig,
     status,
-  };;
+  };
+}
+
+// Call this when user clicks Save or Submit
+function saveForm(status = 'draft') {
+
+  // Step 1: collect everything (you already have this function!)
+  const data = collectFormData(status);
+
+  // Step 2: send it to PHP in the background
+  fetch('save.php', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data)   // converts the big object to text PHP can read
+  })
+
+  // Step 3: read what PHP replies
+  .then(response => response.json())
+  .then(result => {
+    if (result.success) {
+      document.getElementById('saveStatus').textContent = '✅ Saved! SR: ' + result.sr_number;
+    } else {
+      document.getElementById('saveStatus').textContent = '❌ Error: ' + result.error;
+    }
+  });
 }
 
 // ─── STEP NAVIGATION ─────────────────────────────────────
