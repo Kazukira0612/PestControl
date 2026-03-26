@@ -7,12 +7,10 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="../assets/dashboard.css">
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
-
 </head>
 <body>
 
-<!-- MAIN ADMIN -->
-<div id="adminMain" >
+<div id="adminMain">
   <aside class="sidebar">
     <div class="sidebar-brand">
       <div class="brand-logo">JC</div>
@@ -22,19 +20,20 @@
       </div>
     </div>
     <nav class="sidebar-nav">
-      <a class="nav-item active" onclick="showView('dashboard')">📊 Dashboard</a>
-      <a class="nav-item" onclick="showView('reports')">📋 All Reports</a>
-      <a class="nav-item" onclick="showView('applicators')">👤 Applicator Register</a>
-      <a class="nav-item" onclick="showView('customers')">🏢 Customer Register</a>
+      <a class="nav-item active" onclick="showView('viewDashboard')">📊 Dashboard</a>
+      <a class="nav-item" onclick="showView('viewReports')">📋 All Reports</a>
+      <a class="nav-item" onclick="showView('viewApplicators')">👤 Applicator Register</a>
+      <a class="nav-item" onclick="showView('viewCustomers')">🏢 Customer Register</a>
       <a class="nav-item" href="../index.php" target="_blank">➕ New Report</a>
     </nav>
     <div class="sidebar-footer">
       <span id="adminName"></span>
-      <button type="submit" name="btn-logout" class="btn-logout">Logout</button>
+      <button type="button" class="btn-logout" onclick="handleLogout()">Logout</button>
     </div>
   </aside>
 
   <main class="admin-main">
+
     <!-- DASHBOARD VIEW -->
     <div id="viewDashboard" class="view active">
       <div class="page-header">
@@ -68,12 +67,11 @@
       <div class="page-header">
         <h1>All Reports</h1>
         <div class="header-controls">
-          <input type="text" id="searchInput" placeholder="Search SR, address, customer..." class="search-input" >
-          <select id="statusFilter" onchange="" class="filter-select">
+          <input type="text" id="searchInput" placeholder="Search SR, address, customer..." class="search-input">
+          <select id="statusFilter" class="filter-select">
             <option value="">All Status</option>
             <option value="draft">Draft</option>
             <option value="signed">Signed</option>
-            <option value="completed">Completed</option>
           </select>
         </div>
       </div>
@@ -83,22 +81,18 @@
     <!-- DETAIL VIEW -->
     <div id="viewDetail" class="view">
       <div class="page-header">
-        <button class="btn-back-detail" onclick="">← Back to Reports</button>
-        <div class="detail-actions">
-          <button class="btn-edit" onclick="">✏️ Edit</button>
-          <button class="btn-pdf" onclick="">🖨️ Print / PDF</button>
-        </div>
+        <button class="btn-back-detail">← Back to Reports</button>
       </div>
       <div id="reportDetail"></div>
     </div>
 
-    <!-- ── APPLICATORS VIEW ── -->
+    <!-- APPLICATORS VIEW -->
     <div id="viewApplicators" class="view">
       <div class="page-header">
         <h1>Applicators</h1>
         <div class="header-controls">
-          <input type="text" id="searchApplicator" placeholder="Search ID or name…" class="search-input" >
-          <button class="btn btn-success" >+ Add Applicator</button>
+          <input type="text" id="searchApplicator" placeholder="Search ID or name…" class="search-input">
+          <button class="btn btn-success">+ Add Applicator</button>
         </div>
       </div>
       <div class="panel">
@@ -110,13 +104,13 @@
       </div>
     </div>
 
-<!-- ── CUSTOMERS VIEW ── -->
+    <!-- CUSTOMERS VIEW -->
     <div id="viewCustomers" class="view">
       <div class="page-header">
         <h1>Customers</h1>
         <div class="header-controls">
-          <input type="text" id="searchCustomer" placeholder="Search company, lot…" class="search-input" >
-          <button class="btn btn-success" >+ Add Customer</button>
+          <input type="text" id="searchCustomer" placeholder="Search company, lot…" class="search-input">
+          <button class="btn btn-success">+ Add Customer</button>
         </div>
       </div>
       <div class="panel">
@@ -127,18 +121,16 @@
         <div id="customersTable"></div>
       </div>
     </div>
- 
+
   </main>
 </div>
 
-<!-- ═══════════════════════════════════════════════
-     MODAL — ADD / EDIT APPLICATOR
-════════════════════════════════════════════════ -->
+<!-- MODAL — ADD / EDIT APPLICATOR -->
 <div class="modal-overlay" id="applicatorModal">
   <div class="modal">
     <div class="modal-header">
       <h3 id="applicatorModalTitle">Add Applicator</h3>
-      <button class="modal-close" >×</button>
+      <button class="modal-close">×</button>
     </div>
     <div class="modal-body">
       <div class="modal-error" id="applicatorError"></div>
@@ -152,45 +144,32 @@
         <input type="text" id="appId" placeholder="e.g. APP-001">
       </div>
       <div class="form-group">
-        <label>Role</label>
-        <select id="appRole">
-          <option value="applicator">Applicator</option>
-          <option value="supervisor">Supervisor</option>
-          <option value="admin">Admin</option>
-        </select>
+        <label>License No.</label>
+        <input type="text" id="appLicense" placeholder="e.g. PCO-12345">
       </div>
       <div class="form-group">
         <label id="appPassLabel">Password</label>
-        <input type="password" id="appPass" placeholder="Min 6 characters" >
+        <input type="password" id="appPass" placeholder="Min 6 characters">
         <div class="pw-strength"><div class="pw-strength-bar" id="pwBar"></div></div>
       </div>
       <div class="form-group">
         <label>Confirm Password</label>
         <input type="password" id="appPassConfirm" placeholder="Re-enter password">
       </div>
-      <div class="form-group">
-        <label>Status</label>
-        <select id="appStatus">
-          <option value="active">Active</option>
-          <option value="inactive">Inactive</option>
-        </select>
-      </div>
     </div>
     <div class="modal-footer">
-      <button class="btn btn-ghost" >Cancel</button>
-      <button class="btn btn-success" >Save Applicator</button>
+      <button class="btn btn-ghost">Cancel</button>
+      <button class="btn btn-success">Save Applicator</button>
     </div>
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════════════
-     MODAL — ADD / EDIT CUSTOMER
-════════════════════════════════════════════════ -->
+<!-- MODAL — ADD / EDIT CUSTOMER -->
 <div class="modal-overlay" id="customerModal">
   <div class="modal">
     <div class="modal-header">
       <h3 id="customerModalTitle">Add Customer</h3>
-      <button class="modal-close" >×</button>
+      <button class="modal-close">×</button>
     </div>
     <div class="modal-body">
       <div class="modal-error" id="customerError"></div>
@@ -238,15 +217,15 @@
       </div>
     </div>
     <div class="modal-footer">
-      <button class="btn btn-ghost" >Cancel</button>
-      <button class="btn btn-success" >Save Customer</button>
+      <button class="btn btn-ghost">Cancel</button>
+      <button class="btn btn-success">Save Customer</button>
     </div>
   </div>
 </div>
- 
+
 <!-- TOAST -->
 <div class="toast" id="toast"></div>
 
-<script src="../assets/dahsboard.js"></script>
+<script src="../assets/dashboard.js"></script>
 </body>
 </html>

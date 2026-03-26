@@ -44,17 +44,25 @@ document.addEventListener('DOMContentLoaded', async () => {
   // Populate company dropdown (if using dynamic data)
   loadCompanies();
 });
-// ─── SR NUMBER ───────────────────────────────────────────────────────────────
+
+
+// ─── SR NUMBER ─────────────────────────────
 async function initNewSR() {
-  const now   = new Date();
-  const ymd   = now.getFullYear().toString()
-              + String(now.getMonth()+1).padStart(2,'0')
-  const rand  = Math.floor(1000 + Math.random() * 9000);
-  currentSR   = `SR-${ymd}-${rand}`;
- 
+  const now  = new Date();
+
+  const ymd  = now.getFullYear().toString()
+              + String(now.getMonth()+1).padStart(2,'0');
+
+  const rand = Math.floor(1000 + Math.random() * 9000);
+
+  currentSR  = `SR-${ymd}-${rand}`;
+
   const display = document.getElementById('srDisplay');
   if (display) display.textContent = currentSR;
 }
+
+// RUN FUNCTION
+window.addEventListener("DOMContentLoaded", initNewSR);
 
 // ─── TABLE BUILDERS ──────────────────────────────────────
 
