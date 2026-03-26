@@ -61,7 +61,7 @@ include ('db_conn/db_conn.php');
       <div class="field-group">
         <label>Company Name</label>
         <select type="select" id="companyName" placeholder="Company name">
-          <option value="company1">Select Company Name</option>
+          <option value="">Select Company Name</option>
           <?php
             $sql = mysqli_query($conn, "SELECT * FROM company" );
             while ($row = mysqli_fetch_array($sql)) {
@@ -73,22 +73,47 @@ include ('db_conn/db_conn.php');
       <div class="field-group">
         <label>factory/lot</label>
         <select type="select" id="factoryLot" placeholder="Factory/Lot">
-          <option value="company1">Select Factory/Lot</option>
+          <option value="">Select Factory/Lot</option>
           <?php
+            $factoryData = array();
             $sql = mysqli_query($conn, "SELECT * FROM factory_lot " );
             while ($row = mysqli_fetch_array($sql)) {
+              $factoryData[] = array(
+                'factorNo' => $row['factorNo'],
+                'factorName' => $row['factorName'],
+                'comId' => $row['comId']
+              );
+            }
           ?>
-          <option value="<?php echo $row['factorNo']; ?>"><?php echo $row['factorName']; ?></option>
-          <?php } ?>
         </select>
       </div>
     </div>
+
+    <script>
+      // Populate factory/lot options based on selected company
+      const companySelect = document.getElementById('companyName');
+      const factorySelect = document.getElementById('factoryLot');
+      const factoryData = <?php echo json_encode($factoryData); ?>;
+
+      companySelect.addEventListener('change', function() {
+        const selectedComId = this.value;
+        factorySelect.innerHTML = '<option value="">Select Factory/Lot</option>';
+        factoryData.forEach(function(factory) {
+          if (factory.comId === selectedComId) {
+            const option = document.createElement('option');
+            option.value = factory.factorNo;
+            option.textContent = factory.factorName;
+            factorySelect.appendChild(option);
+          }
+        });
+      });
+    </script>
     
     <div class="field-row">
       <div class="field-group full">
         <label>Purpose Of Treatment</label>
         <div class="radio-group">
-          <label class="radio-label"><input type="radio" name="purpose" value="routine"> Routine</label>
+          <label class="radio-label"><input type="radio" name="purpose" value="routine" required> Routine</label>
           <label class="radio-label"><input type="radio" name="purpose" value="complain"> Complain</label>
           <label class="radio-label"><input type="radio" name="purpose" value="followup"> Follow Up</label>
         </div>
@@ -130,7 +155,7 @@ include ('db_conn/db_conn.php');
 
     <div class="section-label">Type Of Pests Covered</div>
     <div class="pest-grid">
-      <label class="pest-check"><input type="checkbox" id="pestAnts"> <span>A) Common Ants</span></label>
+      <label class="pest-check"><input type="checkbox" id="pestAnts" required> <span>A) Common Ants</span></label>
       <label class="pest-check"><input type="checkbox" id="pestCockroaches"> <span>B) Cockroaches</span></label>
       <label class="pest-check"><input type="checkbox" id="pestRats"> <span>C) Rats</span></label>
       <label class="pest-check"><input type="checkbox" id="pestMosquitoes"> <span>D) Mosquitoes</span></label>

@@ -80,7 +80,6 @@ function addRecommendationRowPest() {
     <td>
       <select data-field="class" data-row="${rowCount}">
         <option value="">—</option>
-        <option>1A</option><option>1B</option><option>II</option><option>III</option><option>IV</option>
       </select>
     </td>
     <td><input type="text" placeholder="%" data-field="dilution" data-row="${rowCount}"></td>
