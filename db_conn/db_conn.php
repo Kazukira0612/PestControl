@@ -2,7 +2,7 @@
 $db_host = "localhost";
 $db_user = "root";
 $db_pwd = "";
-$db_name = "pestcontrol";
+$db_name = "pest_control";
 
 $conn = mysqli_connect($db_host, $db_user, $db_pwd, $db_name);
 

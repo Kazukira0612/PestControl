@@ -8,7 +8,7 @@
 </head>
 <body>
         <!-- LOGIN SCREEN -->
-        <form id="loginScreen" class="login-screen" action ="<?php echo htmlspecialchars($_SERVER['PHP_SELF'])?>" method="POST">
+        <form action ="login-process.php" method="POST">
         <div class="login-card">
             <div class="login-logo">JC</div>
             <h2>Login</h2>
@@ -20,7 +20,13 @@
             </div>
             <div class="field-group">
                 <label>Password</label>
-                <input type="password" id="loginPass" placeholder="••••••••" autocomplete="current-password" >
+                <input type="password" id="loginPass" placeholder="••••••••" autocomplete="current-password">
+            </div>
+            <div class="category">
+                <input type="radio" id="admin" name="category" value="admin" required>
+                <label for="admin">Admin</label>
+                <input type="radio" id="employee" name="category" value="employee">
+                <label for="employee">Employee</label>
             </div>
             <div id="loginError" class="login-error"></div>
             <button type="submit" name="btn-login" class="btn-login" >Login →</button>
@@ -29,10 +35,3 @@
         </form>
 </body>
 </html>
-
-<?php 
-    if(isset($_POST['btn-login']))
-    {
-        header("location: admin/dashboard.php");
-    }
-?>
