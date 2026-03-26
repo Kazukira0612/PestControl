@@ -1,5 +1,5 @@
 <?php
-// Get-form.php — lives in the same folder as form-process.php
+
 require_once '../db_conn/db_conn.php';
 
 header('Content-Type: application/json');
