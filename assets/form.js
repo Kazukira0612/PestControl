@@ -55,7 +55,7 @@ async function initNewSR() {
 
   const rand = Math.floor(1000 + Math.random() * 9000);
 
-  currentSR  = `SR-${ymd}-${rand}`;
+  currentSR  = `${ymd}${rand}`;
 
   const display = document.getElementById('srDisplay');
   if (display) display.textContent = currentSR;
