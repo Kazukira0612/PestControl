@@ -10,8 +10,8 @@ $specialinstruction = $_POST['specialinstruction'];
 $remarks = $_POST['remarks'];
 $pestType = $_POST['pestType'];
  
-$mysql = "INSERT INTO customer
-          (custId, treatmentPurpose, plannedDate,typeOfPremise"
+$mysql = "INSERT INTO customer VALUES
+          (custId, treatmentPurpose, plannedDate,typeOfPremise)";
  
 mysqli_close($conn);
 ?>

@@ -1,3 +1,6 @@
+<?php
+include ('db_conn/db_conn.php');
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -59,12 +62,24 @@
         <label>Company Name</label>
         <select type="select" id="companyName" placeholder="Company name">
           <option value="company1">Select Company Name</option>
+          <?php
+            $sql = mysqli_query($conn, "SELECT * FROM company" );
+            while ($row = mysqli_fetch_array($sql)) {
+          ?>
+          <option value="<?php echo $row['comName']; ?>"><?php echo $row['comName']; ?></option>
+          <?php } ?>
         </select>
       </div>
       <div class="field-group">
         <label>factory/lot</label>
         <select type="select" id="factoryLot" placeholder="Factory/Lot">
           <option value="company1">Select Factory/Lot</option>
+          <?php
+            $sql = mysqli_query($conn, "SELECT * FROM factory_lot " );
+            while ($row = mysqli_fetch_array($sql)) {
+          ?>
+          <option value="<?php echo $row['factorName']; ?>"><?php echo $row['factorName']; ?></option>
+          <?php } ?>
         </select>
       </div>
     </div>
