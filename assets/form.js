@@ -68,41 +68,51 @@ window.addEventListener("DOMContentLoaded", initNewSR);
 
 let recRowCountPest = 6;
 function buildPesticidesTable() {
-  const body = document.getElementById('pesticidesBody');
-  body.innerHTML = '';
+    const body = document.getElementById('pesticidesBody');
+    body.innerHTML = '';
 
-  for (let i = 1; i <= recRowCountPest; i++) {
-    addRecommendationRowPest();
-  }
+    for (let i = 1; i <= recRowCountPest; i++) {
+        addRecommendationRowPest();
+    }
 }
 
 function addRecommendationRowPest() {
-  const body = document.getElementById('pesticidesBody');
-  const rowCount = body.querySelectorAll('tr').length + 1;
+    const body = document.getElementById('pesticidesBody');
+    const rowCount = body.querySelectorAll('tr').length + 1;
 
-  const tr = document.createElement('tr');
-  tr.innerHTML = `
-    <td><span class="row-num">${rowCount}</span></td>
-    <td><input type="text" placeholder="e.g. Cypermethrin" data-field="active_ingredients" data-row="${rowCount}"></td>
-    <td><input type="text" placeholder="Trade name" data-field="trade_name" data-row="${rowCount}"></td>
-    <td>
-      <select data-field="class" data-row="${rowCount}">
-        <option value="">—</option>
-      </select>
-    </td>
-    <td><input type="text" placeholder="%" data-field="dilution" data-row="${rowCount}"></td>
-    <td>
-      <select data-field="method" data-row="${rowCount}">
-        <option value="">—</option>
-        <option>Spray</option><option>Fogging</option><option>Misting</option>
-        <option>Gel Bait</option><option>Dusting</option><option>Injection</option>
-      </select>
-    </td>
-    <td><input type="number" placeholder="m²" data-field="area" data-row="${rowCount}"></td>
-    <td><input type="text" placeholder="Litre/KG" data-field="qty" data-row="${rowCount}"></td>
-  `;
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+        <td><span class="row-num">${rowCount}</span></td>
+        <td><input type="text" placeholder="e.g. Cypermethrin" data-field="active_ingredients" data-row="${rowCount}"></td>
+        <td><input type="text" placeholder="Trade name" data-field="trade_name" data-row="${rowCount}"></td>
+        <td>
+            <select data-field="class" data-row="${rowCount}">
+                <option value="">—</option>
+            </select>
+        </td>
+        <td><input type="text" placeholder="%" data-field="dilution" data-row="${rowCount}"></td>
+        <td>
+            <select data-field="method" data-row="${rowCount}">
+                <option value="">—</option>
+                <option>Spray</option>
+                <option>Fogging</option>
+                <option>Misting</option>
+                <option>Gel Bait</option>
+                <option>Dusting</option>
+                <option>Injection</option>
+            </select>
+        </td>
+        <td><input type="number" placeholder="m²" data-field="area" data-row="${rowCount}"></td>
+        <td><input type="text" placeholder="Litre/KG" data-field="qty" data-row="${rowCount}"></td>
+    `;
 
-  body.appendChild(tr);
+    body.appendChild(tr);
+    
+    // Populate the class dropdown for this new row
+    const classSelect = tr.querySelector('[data-field="class"]');
+    if (typeof populateClassDropdown === 'function') {
+        populateClassDropdown(classSelect);
+  }
 }
 
 let recRowCountStat = 3;
