@@ -31,7 +31,7 @@ if (isset($_POST['btn-login'])) {
         if (mysqli_num_rows($result) > 0) {
             $_SESSION['id'] = $row['empId'];
             $_SESSION['cat'] = "employee";
-            header("location: employee/dashboard.php");
+            header("location: formH.php");
         }
         else {
             echo "<script>alert('Invalid username or password');
