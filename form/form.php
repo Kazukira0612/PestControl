@@ -457,7 +457,7 @@ while ($row = mysqli_fetch_array($sql)) {
     <h3>Report Submitted!</h3>
     <p>Service Report <strong id="modalSrNum"></strong> has been saved successfully.</p>
     <div class="modal-actions">
-      <button onclick="" class="btn-modal-new">+ New Report</button>
+      <button type="submit" class="btn-modal-new">+ New Report</button>
       <a href="admin/dashboard.php" class="btn-modal-admin">View in Admin</a>
     </div>
   </div>
