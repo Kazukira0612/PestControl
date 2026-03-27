@@ -334,7 +334,9 @@ function renderCustomersTable(list) {
             <td>${esc(c.comContact) || '—'}</td>
             <td>${esc(c.comPhone)}</td>
             <td>${esc(c.comEmail)}</td>
-            <td>${esc(c.factorName) || '—'}</td>
+            <td>${c.factorName 
+            ? c.factorName.split('||').map(f => `<div>${esc(f.trim())}</div>`).join('') 
+            : '—'}</td>
             <td>
               <button class="btn-link" onclick="openCustomerModal('edit',${c.comId})">Edit</button>
               <button class="btn-link danger" onclick="deleteCustomer(${c.comId},'${esc(c.comName)}')">Delete</button>
@@ -353,10 +355,11 @@ function openCustomerModal(mode, comId = null) {
   if (mode === 'add') {
     document.getElementById('customerModalTitle').textContent = 'Add Customer';
     document.getElementById('customerEditId').value = '';
-    ['custName','custContact','custEmail','custPhone','custLot','custAddress','custNotes'].forEach(id => {
+    ['custName','custContact','custEmail','custPhone','custAddress','custNotes'].forEach(id => {
       document.getElementById(id).value = '';
     });
-    document.getElementById('custIndustry').value = '';
+    document.getElementById('factoryList').innerHTML = '';
+    addFactoryRow();
   } else {
     const c = allCustomers.find(x => x.comId == comId);
     if (!c) return;
@@ -366,9 +369,13 @@ function openCustomerModal(mode, comId = null) {
     document.getElementById('custContact').value = c.comContact || '';
     document.getElementById('custEmail').value   = c.comEmail   || '';
     document.getElementById('custPhone').value   = c.comPhone   || '';
-    document.getElementById('custLot').value     = c.factorName || '';
+    document.getElementById('factoryList').innerHTML = '';
+    const factories = c.factorName 
+      ? c.factorName.split('||').map(f => f.trim()).filter(Boolean) 
+      : [];
+    if (factories.length) factories.forEach(f => addFactoryRow(f));
+    else addFactoryRow();
     document.getElementById('custAddress').value = c.comAddress || '';
-    document.getElementById('custIndustry').value= c.industry   || '';
     document.getElementById('custNotes').value   = c.notes      || '';
   }
   modal.classList.add('active');
@@ -387,9 +394,9 @@ async function saveCustomer() {
   const contact = document.getElementById('custContact').value.trim();
   const email   = document.getElementById('custEmail').value.trim();
   const phone   = document.getElementById('custPhone').value.trim();
-  const lot     = document.getElementById('custLot').value.trim();
+  const factories = getFactoryValues();
+  const lot = factories.join(' || ');
   const address = document.getElementById('custAddress').value.trim();
-  const industry= document.getElementById('custIndustry').value;
   const notes   = document.getElementById('custNotes').value.trim();
  
   if (!comName || !phone) {
@@ -399,7 +406,7 @@ async function saveCustomer() {
  
   const action  = editId ? 'updateCustomer' : 'addCustomer';
   const payload = { comName, comContact: contact, comEmail: email, comPhone: phone,
-                    factorName: lot, comAddress: address, industry, notes };
+                    factorName: lot, comAddress: address, notes };
   if (editId) payload.comId = editId;
  
   const data = await request(action, payload);
@@ -421,6 +428,26 @@ async function deleteCustomer(comId, comName) {
   } else {
     showToast(data.message || 'Failed to delete.', 'error');
   }
+}
+
+/* ─── FACTORY ROW HELPERS ───────────────────────── */
+function addFactoryRow(value = '') {
+  const list = document.getElementById('factoryList');
+  const row = document.createElement('div');
+  row.className = 'factory-row';
+  row.style.cssText = 'display:flex;gap:6px;margin-bottom:6px;';
+  row.innerHTML = `
+    <input type="text" class="factory-input" placeholder="e.g. Lot 12, Jalan Perusahaan 3" 
+           value="${esc(value)}" style="flex:1">
+    <button type="button" class="btn btn-ghost" style="padding:4px 10px;font-size:13px;color:var(--text3)"
+            onclick="this.closest('.factory-row').remove()">×</button>`;
+  list.appendChild(row);
+}
+
+function getFactoryValues() {
+  return [...document.querySelectorAll('.factory-input')]
+    .map(i => i.value.trim())
+    .filter(Boolean);
 }
  
 /* ─── PASSWORD STRENGTH BAR ────────────────────── */
@@ -451,7 +478,7 @@ function initModalBindings() {
  
   // Customer modal
   document.querySelector('#customerModal .modal-close').onclick = closeCustomerModal;
-  document.querySelector('#customerModal .btn-ghost').onclick   = closeCustomerModal;
+  document.querySelector('#customerModal .modal-footer .btn-ghost').onclick = closeCustomerModal;
   document.querySelector('#customerModal .btn-success').onclick = saveCustomer;
   document.querySelector('#viewCustomers .btn-success').onclick = () => openCustomerModal('add');
   document.getElementById('customerModal').onclick = e => {

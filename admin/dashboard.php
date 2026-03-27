@@ -92,7 +92,7 @@
         <h1>Applicators</h1>
         <div class="header-controls">
           <input type="text" id="searchApplicator" placeholder="Search ID or name…" class="search-input">
-          <button class="btn btn-success">+ Add Applicator</button>
+          <button class="btn btn-success" onclick="openApplicatorModal('add')">+ Add Applicator</button>
         </div>
       </div>
       <div class="panel">
@@ -110,7 +110,7 @@
         <h1>Customers</h1>
         <div class="header-controls">
           <input type="text" id="searchCustomer" placeholder="Search company, lot…" class="search-input">
-          <button class="btn btn-success">+ Add Customer</button>
+          <button class="btn btn-success" onclick="openCustomerModal('add')">+ Add Customer</button>
         </div>
       </div>
       <div class="panel">
@@ -191,25 +191,13 @@
         <input type="tel" id="custPhone" placeholder="e.g. 03-1234 5678">
       </div>
       <div class="form-group">
-        <label>Factory / Lot Number</label>
-        <input type="text" id="custLot" placeholder="e.g. Lot 12, Jalan Perusahaan 3">
-      </div>
+        <label>Factories / Lot Numbers</label>
+        <div id="factoryList"></div>
+        <button type="button" class="btn btn-ghost" style="margin-top:6px;font-size:12px" onclick="addFactoryRow()">+ Add Factory</button>
+     </div>
       <div class="form-group">
         <label>Address</label>
         <textarea id="custAddress" placeholder="Full factory address…"></textarea>
-      </div>
-      <div class="form-group">
-        <label>Industry / Type</label>
-        <select id="custIndustry">
-          <option value="">— Select —</option>
-          <option value="food">Food & Beverage</option>
-          <option value="pharma">Pharmaceutical</option>
-          <option value="manufacturing">Manufacturing</option>
-          <option value="warehouse">Warehouse / Logistics</option>
-          <option value="hospitality">Hospitality</option>
-          <option value="office">Office / Commercial</option>
-          <option value="other">Other</option>
-        </select>
       </div>
       <div class="form-group">
         <label>Notes</label>
