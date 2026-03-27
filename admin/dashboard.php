@@ -214,6 +214,7 @@
 <!-- TOAST -->
 <div class="toast" id="toast"></div>
 
+<script src="assets/js/form.js"></script>    
 <script src="../assets/dashboard.js"></script>
 </body>
 </html>

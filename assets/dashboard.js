@@ -15,6 +15,16 @@ function showView(viewName) {
   if (viewName === 'viewCustomers') loadCustomers();
 }
 
+/* ─── HTML ESCAPE HELPER ───────────────────────── */
+function esc(str) {
+  return String(str ?? '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+}
+
 /* ─── DASHBOARD ────────────────────────────────── */
 async function loadDashboard() {
   const data = await request('dashboardStats');
