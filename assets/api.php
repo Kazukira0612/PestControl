@@ -72,20 +72,20 @@ if ($action === 'updateCustomer') {
 if ($action === 'dashboardStats') {
 
   $total  = mysqli_fetch_row(
-    mysqli_query($conn,"SELECT COUNT(*) FROM report")
+    mysqli_query($conn,"SELECT COUNT(*) FROM applicant ")
   )[0];
 
   $signed = mysqli_fetch_row(
-    mysqli_query($conn,"SELECT COUNT(*) FROM report WHERE status='signed'")
+    mysqli_query($conn,"SELECT COUNT(*) FROM applicant WHERE status='signed'")
   )[0];
 
   $draft  = mysqli_fetch_row(
-    mysqli_query($conn,"SELECT COUNT(*) FROM report WHERE status='draft'")
+    mysqli_query($conn,"SELECT COUNT(*) FROM applicant WHERE status='draft'")
   )[0];
 
   $today  = mysqli_fetch_row(
     mysqli_query($conn,"
-      SELECT COUNT(*) FROM report
+      SELECT COUNT(*) FROM applicant
       WHERE DATE(created_at)=CURDATE()
     ")
   )[0];
@@ -94,7 +94,7 @@ if ($action === 'dashboardStats') {
 
   $res = mysqli_query($conn,"
       SELECT srNum, comName, servAdd, planDate, status
-      FROM report
+      FROM applicant
       ORDER BY id DESC
       LIMIT 5
   ");
