@@ -1,3 +1,13 @@
+/* ─── INIT ─────────────────────────────────────── */
+document.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('pageDate').textContent =
+    new Date().toLocaleDateString('en-MY', { weekday:'long', year:'numeric', month:'long', day:'numeric' });
+ 
+  initModalBindings();
+  loadDashboard();
+ 
+});
+
 /* ─── VIEW NAVIGATION ──────────────────────────── */
 function showView(viewName) {
   document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
@@ -59,6 +69,20 @@ async function loadDashboard() {
           </tr>`).join('')}
       </tbody>
     </table>`;
+}
+
+async function request(action, payload = {}) {
+  try {
+    const res = await fetch('../assets/api.php', { 
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ action, ...payload })
+    });
+    return await res.json();
+  } catch (err) {
+    console.error('Request failed:',err);
+    return { success: false, message: 'Network error' };
+  }
 }
 
 /* ─── REPORTS ──────────────────────────────────── */
@@ -496,18 +520,8 @@ function initModalBindings() {
   };
 }
 
-/* ─── INIT ─────────────────────────────────────── */
-document.addEventListener('DOMContentLoaded', () => {
-  document.getElementById('pageDate').textContent =
-    new Date().toLocaleDateString('en-MY', { weekday:'long', year:'numeric', month:'long', day:'numeric' });
- 
-  initModalBindings();
-  loadDashboard();
- 
-});
-
 /* ─── LOGOUT ───────────────────────────────────── */
 async function handleLogout() {
-  await request('logout');
+  // await request('logout');
   window.location.href = '../login.php';
 }

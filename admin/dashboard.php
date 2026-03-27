@@ -24,11 +24,11 @@
       <a class="nav-item" onclick="showView('viewReports')">📋 All Reports</a>
       <a class="nav-item" onclick="showView('viewApplicators')">👤 Applicator Register</a>
       <a class="nav-item" onclick="showView('viewCustomers')">🏢 Customer Register</a>
-      <a class="nav-item" href="../index.php" target="_blank">➕ New Report</a>
+      <a class="nav-item" href="../formH.php" target="_blank">➕ New Report</a>
     </nav>
     <div class="sidebar-footer">
       <span id="adminName"></span>
-      <button type="button" class="btn-logout" onclick="handleLogout()">Logout</button>
+      <button type="button" class="btn-logout" name="logout" onclick="handleLogout()">Logout</button>
     </div>
   </aside>
 
@@ -70,7 +70,6 @@
           <input type="text" id="searchInput" placeholder="Search SR, address, customer..." class="search-input">
           <select id="statusFilter" class="filter-select">
             <option value="">All Status</option>
-            <option value="draft">Draft</option>
             <option value="signed">Signed</option>
           </select>
         </div>
@@ -159,7 +158,7 @@
     </div>
     <div class="modal-footer">
       <button class="btn btn-ghost">Cancel</button>
-      <button class="btn btn-success">Save Applicator</button>
+      <button class="btn btn-success" onclick="saveApplicator()">Save Applicator</button>
     </div>
   </div>
 </div>
@@ -206,15 +205,14 @@
     </div>
     <div class="modal-footer">
       <button class="btn btn-ghost">Cancel</button>
-      <button class="btn btn-success">Save Customer</button>
+      <button class="btn btn-success" onclick="saveCustomer()">Save Customer</button>
     </div>
   </div>
 </div>
 
 <!-- TOAST -->
 <div class="toast" id="toast"></div>
-
-<script src="assets/js/form.js"></script>    
+ 
 <script src="../assets/dashboard.js"></script>
 </body>
 </html>
