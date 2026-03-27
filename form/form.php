@@ -56,7 +56,7 @@ while ($row = mysqli_fetch_array($sql)) {
 </div>
 
 <main class="form-container">
-<form action="form-process.php" method="POST" onsubmit="return false;">
+<form action="form-process.php" method="POST" enctype="multipart/form-data">
   <div class="form-header-bar">
     <h2>FORM H</h2>
     <p class="form-sub">Office Copy / Account Dept Copy / Customer Copy &nbsp;|&nbsp; Record Of Pesticide Usage</p>
@@ -122,7 +122,7 @@ while ($row = mysqli_fetch_array($sql)) {
       <div class="field-group full">
         <label>Purpose Of Treatment</label>
         <div class="radio-group">
-          <label class="radio-label"><input type="radio" name="purpose" value="routine" required> Routine</label>
+          <label class="radio-label"><input type="radio" name="purpose" value="routine"> Routine</label>
           <label class="radio-label"><input type="radio" name="purpose" value="complain"> Complain</label>
           <label class="radio-label"><input type="radio" name="purpose" value="followup"> Follow Up</label>
         </div>
